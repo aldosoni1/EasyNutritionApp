@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage("Enviando Información....");
         dialog.show();
-        Ion.with(this).load("POST","http://192.168.92.201/api/token")
+        Ion.with(this).load("POST","http://192.168.0.25/api/token")
                 .setBodyParameter("userName",email)
                 .setBodyParameter("password",password)
                 .setBodyParameter("grant_type","password")
@@ -70,11 +70,16 @@ public class LoginActivity extends AppCompatActivity {
                         if (e!=null){
                             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }else {
-                            if (et.getAccess_token()!=null)
+                            if (et.getAccess_token()!=null){
                                 Toast.makeText(LoginActivity.this,et.getAccess_token(), Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, PrincipalActivity.class);
+                                startActivity(intent);
+                                finish();
+                                }
                             else{
                                 Toast.makeText(LoginActivity.this,et.getError_description(), Toast.LENGTH_LONG).show();
-                                finish();
+
+
                                 //Impelementar Vista
                             }
                         }
