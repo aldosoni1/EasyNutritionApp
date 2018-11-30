@@ -48,7 +48,7 @@ public class DietaDetalladaActivity extends AppCompatActivity {
                         elementos = new String[dietaCompleta.getDietaAlimentos().size()];
                         for(int i=0; i<dietaCompleta.getDietaAlimentos().size(); i++){
                             //Log.d("String",lista.get(i).getEmail());
-                            elementos[i] = dietaCompleta.getDietaAlimentos().get(i).getHoraDia()+"\n"+dietaCompleta.getDietaAlimentos().get(i).getAlimento().getNombre();
+                            elementos[i] = "Alimento: "+dietaCompleta.getDietaAlimentos().get(i).getHoraDia()+"\n"+"Hora del día: "+dietaCompleta.getDietaAlimentos().get(i).getAlimento().getNombre()+"\n Cantidad: "+dietaCompleta.getDietaAlimentos().get(i).getCantidad()+"\n";
                         }
                         dialogo.dismiss();
                         txtNombre.setText(dietaCompleta.getNombre());
