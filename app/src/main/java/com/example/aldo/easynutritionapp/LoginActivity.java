@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.aldo.easynutritionapp.Models.ErrorToken;
+import com.example.aldo.easynutritionapp.Utils.Globales;
 import com.google.gson.Gson;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -25,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         setTitle("Easy Nutrition");
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPassword);
+        txtEmail.setText("paciente1@gmail.com");
+        txtPassword.setText("Aits23dic12");
         Button btnIngresar = findViewById(R.id.btnIngresar);
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage("Enviando Información....");
         dialog.show();
-        Ion.with(this).load("POST","http://192.168.0.25/api/token")
+        Ion.with(this).load("POST",Globales.URL+"token")
                 .setBodyParameter("userName",email)
                 .setBodyParameter("password",password)
                 .setBodyParameter("grant_type","password")
@@ -71,14 +74,14 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }else {
                             if (et.getAccess_token()!=null){
-                                Toast.makeText(LoginActivity.this,et.getAccess_token(), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(LoginActivity.this,et.getAccess_token(), Toast.LENGTH_LONG).show();
+                                Globales.nombreUsuario=email;
                                 Intent intent = new Intent(LoginActivity.this, PrincipalActivity.class);
                                 startActivity(intent);
                                 finish();
                                 }
                             else{
                                 Toast.makeText(LoginActivity.this,et.getError_description(), Toast.LENGTH_LONG).show();
-
 
                                 //Impelementar Vista
                             }
